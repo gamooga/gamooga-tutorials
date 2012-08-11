@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="15" height="9" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="TileLayer_background" tilewidth="32" tileheight="32">
+  <image source="TileLayer_background.png" width="1024" height="1024"/>
+  <tile id="0">
+   <properties>
+    <property name="MovementCost" value="1"/>
+    <property name="TileType" value="Grass"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="MovementCost" value="2"/>
+    <property name="TileType" value="Mountain"/>
+   </properties>
+  </tile>
+  <tile id="32">
+   <properties>
+    <property name="MovementCost" value="4"/>
+    <property name="TileType" value="River"/>
+   </properties>
+  </tile>
+  <tile id="33">
+   <properties>
+    <property name="MovementCost" value="1"/>
+    <property name="TileType" value="Forest"/>
+   </properties>
+  </tile>
+  <tile id="64">
+   <properties>
+    <property name="MovementCost" value="4"/>
+    <property name="TileType" value="River"/>
+   </properties>
+  </tile>
+  <tile id="65">
+   <properties>
+    <property name="MovementCost" value="4"/>
+    <property name="TileType" value="River"/>
+   </properties>
+  </tile>
+  <tile id="66">
+   <properties>
+    <property name="MovementCost" value="4"/>
+    <property name="TileType" value="River"/>
+   </properties>
+  </tile>
+  <tile id="96">
+   <properties>
+    <property name="MovementCost" value="4"/>
+    <property name="TileType" value="River"/>
+   </properties>
+  </tile>
+  <tile id="97">
+   <properties>
+    <property name="MovementCost" value="4"/>
+    <property name="TileType" value="River"/>
+   </properties>
+  </tile>
+  <tile id="98">
+   <properties>
+    <property name="MovementCost" value="4"/>
+    <property name="TileType" value="River"/>
+   </properties>
+  </tile>
+  <tile id="128">
+   <properties>
+    <property name="MovementCost" value="4"/>
+    <property name="TileType" value="River"/>
+   </properties>
+  </tile>
+  <tile id="129">
+   <properties>
+    <property name="MovementCost" value="4"/>
+    <property name="TileType" value="River"/>
+   </properties>
+  </tile>
+  <tile id="130">
+   <properties>
+    <property name="MovementCost" value="4"/>
+    <property name="TileType" value="River"/>
+   </properties>
+  </tile>
+  <tile id="160">
+   <properties>
+    <property name="MovementCost" value="4"/>
+    <property name="TileType" value="River"/>
+   </properties>
+  </tile>
+  <tile id="161">
+   <properties>
+    <property name="MovementCost" value="4"/>
+    <property name="TileType" value="River"/>
+   </properties>
+  </tile>
+  <tile id="162">
+   <properties>
+    <property name="MovementCost" value="4"/>
+    <property name="TileType" value="River"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Background" width="15" height="9">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA2NkYGBQAmJGIGaCskHYEYidgNgZSYwJqg6mHhkzIelPBOIkIE5G0seERQ82/Y1A3ATEzUTow+YOUtUtBOJFWPBiGtsL8xtyOJMSTqSEM7b4RQ5nXPELAHsZZuscAgAA
+  </data>
+ </layer>
+ <objectgroup name="Units_P1" width="15" height="9">
+  <object x="32" y="160" width="32" height="32">
+   <properties>
+    <property name="Type" value="Tank"/>
+   </properties>
+  </object>
+  <object x="32" y="224" width="32" height="32">
+   <properties>
+    <property name="Type" value="Cannon"/>
+   </properties>
+  </object>
+  <object x="32" y="32" width="32" height="32">
+   <properties>
+    <property name="Type" value="Helicopter"/>
+   </properties>
+  </object>
+  <object x="32" y="96" width="32" height="32">
+   <properties>
+    <property name="Type" value="Tank"/>
+   </properties>
+  </object>
+  <object x="96" y="160" width="32" height="32">
+   <properties>
+    <property name="Type" value="Soldier"/>
+   </properties>
+  </object>
+  <object x="96" y="96" width="32" height="32">
+   <properties>
+    <property name="Type" value="Soldier"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Units_P2" width="15" height="9">
+  <object x="352" y="96" width="32" height="32">
+   <properties>
+    <property name="Type" value="Soldier"/>
+   </properties>
+  </object>
+  <object x="352" y="160" width="32" height="32">
+   <properties>
+    <property name="Type" value="Soldier"/>
+   </properties>
+  </object>
+  <object x="416" y="160" width="32" height="32">
+   <properties>
+    <property name="Type" value="Tank"/>
+   </properties>
+  </object>
+  <object x="416" y="32" width="32" height="32">
+   <properties>
+    <property name="Type" value="Helicopter"/>
+   </properties>
+  </object>
+  <object x="416" y="96" width="32" height="32">
+   <properties>
+    <property name="Type" value="Tank"/>
+   </properties>
+  </object>
+  <object x="416" y="224" width="32" height="32">
+   <properties>
+    <property name="Type" value="Cannon"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Buildings_P1" width="15" height="9">
+  <object x="0" y="96" width="32" height="64">
+   <properties>
+    <property name="Type" value="HQ"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Buildings_P2" width="15" height="9">
+  <object x="448" y="96" width="32" height="64">
+   <properties>
+    <property name="Type" value="HQ"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>
