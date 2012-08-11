@@ -5,7 +5,7 @@ Introduction
 ------------
 In this tutorial, we have converted the game of TurnWars from Ray Wenderlich website to make it actually multiplayer over internet using Gamooga. The original game was a "pass your device" style multiplayer game. Original tutorials are here: Part 1: www.raywenderlich.com/12022/how-to-make-a-turn-based-strategy-game-part-1 and Part 2: www.raywenderlich.com/12110/how-to-make-a-turn-based-strategy-game-part-2
 
- In this tutorial, we want to convert original game: http://www.youtube.com/watch?v=1zmNwyAQtjU into real multiplayer: http://www.youtube.com/watch?v=v6I5xyFe5Uw. (Both are ~35 sec  videos, you will like the conversion).
+In this tutorial, we want to convert original game: http://www.youtube.com/watch?v=1zmNwyAQtjU into real multiplayer: http://www.youtube.com/watch?v=v6I5xyFe5Uw. (Both are ~35 sec  videos, you will like the conversion).
 
 This is a standalone tutorial and does not require you to readup the previous tutorials. But since we will be changing already written game code, it helps to have a bit of an understanding of how everything is laid out. I recommend you to skim through the code, more importantly the two files: ``HelloWorldLayer.m`` and ``Unit.m``. You can download the game code from Part 2 link.
 
