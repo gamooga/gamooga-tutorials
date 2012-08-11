@@ -32,7 +32,7 @@ Setup
 7. Open Terminal and cd into 'TurnWars' directory and run development server with: ``python2.6 ./gamooga-sdk/dev-server/gamooga.py ./gamlet``
 8. Now from TurnWars/gamooga-sdk/api/ios drag 'GamoogaClient.h' into source tree and 'libgamoogaclient.a' into Frameworks group of source tree.
 
-.. image:: //raw.github.com/gamooga/gamooga-tutorials/throwaway/TurnWars/img/dir.png
+.. image:: //raw.github.com/gamooga/gamooga-tutorials/master/TurnWars/img/dir.png
 
 Add Multiplayer class
 ---------------------
@@ -135,11 +135,11 @@ You can run the project now in simulator, you should see a transparent layer wit
 
 Your game output should look like:
 
-.. image:: //raw.github.com/gamooga/gamooga-tutorials/throwaway/TurnWars/img/first.png
+.. image:: //raw.github.com/gamooga/gamooga-tutorials/master/TurnWars/img/first.png
 
 Also the project output console (Shift+Cmd+c) should look like below:
 
-.. image:: //raw.github.com/gamooga/gamooga-tutorials/throwaway/TurnWars/img/console.png
+.. image:: //raw.github.com/gamooga/gamooga-tutorials/master/TurnWars/img/console.png
 
 Server side matchmaking
 -----------------------
