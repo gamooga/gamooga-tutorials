@@ -1,7 +1,7 @@
 Gamooga Tutorials
 =================
 
-This repository contains the tutorials on development of apps/games developed using Gamooga. Explore the following tutorials:
+This repository contains tutorials on development of apps/games using Gamooga.
 
 `TurnWars <https://github.com/gamooga/gamooga-tutorials/tree/master/TurnWars>`_: 
 ---------------------------------------------------------------------------------
