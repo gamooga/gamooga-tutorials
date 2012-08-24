@@ -3,7 +3,7 @@ TurnWars + Gamooga
 
 Introduction
 ------------
-In this tutorial, we have converted a turn based strategy game of TurnWars from Ray Wenderlich website to make it actually multiplayer over internet using Gamooga. The original game was a "pass your device" style multiplayer game. Original tutorials are here: Part 1: www.raywenderlich.com/12022/how-to-make-a-turn-based-strategy-game-part-1 and Part 2: www.raywenderlich.com/12110/how-to-make-a-turn-based-strategy-game-part-2
+In this tutorial, we have converted a turn based strategy game of TurnWars to realtime multiplayer over internet using Gamooga. The original game was a "pass your device" style multiplayer game developed as part of tutorials from Ray Wenderlich website: Part 1: www.raywenderlich.com/12022/how-to-make-a-turn-based-strategy-game-part-1 and Part 2: www.raywenderlich.com/12110/how-to-make-a-turn-based-strategy-game-part-2
 
 Original game: http://www.youtube.com/watch?v=1zmNwyAQtjU, converted realtime multiplayer: http://www.youtube.com/watch?v=v6I5xyFe5Uw. (Both are ~35 sec  videos, you will like the conversion).
 
