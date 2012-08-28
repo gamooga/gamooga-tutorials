@@ -1,5 +1,5 @@
 LiveDraw
-=================
+========
 
 Introduction
 ------------
@@ -120,7 +120,7 @@ The above code does the following:
 
 Also notice that if we have a session id in the url hash, we join that session instead of creating anew. Hence opening the html page without any url hash creates a new session and opening it with a url hash containing a session id joins it into that session.
 
-You can now open this page by going to ``http://localhost:10000/`` (assuming the development server is already running). Gamooga client library when connected to development server populates the developer console with all the events like connected, messages sent/received, disconnected and any other errors that occur. Open up developer console and you can see a "GAMOOGA: connected" as shown below. As you go through the next sections and send/receive messages from Gamooga backend, you can see messages sent/received in the developer console.
+You can now open this page by going to http://localhost:10000/ (assuming the development server is already running). Gamooga client library when connected to development server populates the developer console with all the events like connected, messages sent/received, disconnected and any other errors that occur. Open up developer console and you can see a "GAMOOGA: connected" as shown below. As you go through the next sections and send/receive messages from Gamooga backend, you can also see those messages in the developer console.
 
 .. image:: //raw.github.com/gamooga/gamooga-tutorials/master/LiveDraw/img/connected.png
 
@@ -194,7 +194,7 @@ Now add the following functions:
 
 When the user holds the mouse down we set ``mousedown`` to ``true``. When he moves it with mouse down, ``onMouseMove`` is executed, which essentially draws paths as user moves his mouse. We also collect the move coordinates in a variable ``coorData``. When he releases the mouse, we set ``mousedown`` to false and add a "-1,-1;" to ``coorData``.
 
-``coorData`` collects the coordinates seperated by a ';' with the ``x`` and ``y`` values seperated by a ','. Also to distinguish a new path from an old one, we add a "-1,-1;" to ``coorData`` in ``mouseup`` so we can replicate the same output at the other user.
+``coorData`` collects the coordinates seperated by a ';' with the ``x`` and ``y`` values seperated by a ','. Also to distinguish a new path from an old one, we add a "-1,-1;" to ``coorData`` in ``mouseup`` so we can replicate the same output at other connected users.
 
 Coordinate transport
 --------------------
@@ -223,7 +223,7 @@ We have sent coordinate data from client side to server side, we now need to sen
         gamooga.broadcastexcept("coordata", msg, conn_id)
     end)
 
-In the above code, we just broadcast the "coordata" type message received from one user to all other users except him. These are only three lines of server side required for this application. Easy, it really is, right?
+In the above code, we just broadcast the "coordata" type message received from one user to all other users except him. These are the only three lines of server side code required for this application. Easy, it really is, right?
 
 Handle "coordata"
 -----------------
@@ -277,13 +277,13 @@ We are mostly done at this point, however there is a small issue when two or mor
 Tiny caveat
 -----------
 
-You can see that ``ctx`` provides you with a single pointer on the canvas to extend the paths being drawn. Because of this, when mulitple users' paths are simultaneously drawn on your canvas, they are not drawn right (``lineTo``s of different users intermingle and you see unneeded lines).
+You can see that ``ctx`` provides you with a single pointer on the canvas to extend the paths being drawn. Because of this, when mulitple users' paths are simultaneously drawn on your canvas, they are not drawn right (``lineTo`` of different users intermingle and you see unneeded lines).
 
 To fix that add the following global variables in script tag:
 
 .. code-block:: javascript
 
-    //var othernewpath = true // comment this line, change it to an dict as below
+    //var othernewpath = true // comment this line, change it to a dict as below
     var othernewpath = {};
     var mylastpoint;
     var hislastpoint = {};
@@ -350,7 +350,7 @@ Change ``onmessage`` callback for ``coordata`` like below:
         ...
     }
 
-Essentially in the above code, we made sure that before extending an user's path we move to the end of his already drawn path regardless of what we were drawing before. ``mylastpoint`` and ``hislastpoint`` store the end of already drawn paths of respective users. Please note that d[0] contained the 'conn_id' of the user and since its unique, we use it to store user specific data in ``othernewpath`` and ``hislastpoint``.
+Essentially in the above code, we made sure that before extending an user's path we move to the end of his already drawn path regardless of what we were drawing before. ``mylastpoint`` and ``hislastpoint`` store the end of already drawn paths of respective users. Please note that d[0] contained the 'conn_id' of the user (sent from server side) and since its unique, we use it to store user specific data in ``othernewpath`` and ``hislastpoint``.
 
 With the above changes, the application is completely ready for collaborative realtime simultaneous drawing of as many users that may have joined the session. We are all done, except for one feature: the "clear" button. We implement it below.
 
@@ -368,7 +368,7 @@ When clear button is clicked, we want the canvases of all the users to clear up.
         gc.send("coordata", "-2,-2;");
     }
 
-We clear the rectangle and add a "-2,-2;" to coordinate data to be sent to other users. It will be detected at other users and similar clear up is performed at all other users. Change ``onmessage`` callback for ``coordata`` like below:
+We clear the rectangle and add a "-2,-2;" to coordinate data to be sent to other users. It will be detected at other users and similar clear up is performed. Change ``onmessage`` callback for ``coordata`` like below:
 
 .. code-block:: javascript
 
@@ -403,12 +403,10 @@ We clear the rectangle and add a "-2,-2;" to coordinate data to be sent to other
         ...
     }
 
-In the above code, on receipt of "-2,-2;" we clearup the canvas.
-
 And with this we have the complete app ready. Test it out. Fire up browsers and go to http://localhost:10000/ in multiple tabs/windows and experience collaborative drawing. You can also load up the app in another machine by doing the following:
 
-1. Change gc = new GamoogaClient("127.0.0.1"); to gc = new GamoogaClient("<LAN ip of dev server>"); in ``oninit`` function.
-2. And going to \http://<LAN ip of dev server>:10000/.
+1. Change ``gc = new GamoogaClient("127.0.0.1");`` to ``gc = new GamoogaClient("<LAN ip of dev server>");`` in ``oninit`` function.
+2. Go to \http://<LAN ip of dev server>:10000/.
 
 Deployment
 ----------
@@ -419,9 +417,9 @@ To deploy to production, follow the steps:
 2. Click "Upload new gamlet" in "My gamlets" page.
 3. Zip ``gamlet`` folder in 'LiveDraw/' and upload it.
 4. Go the uploaded gamlet's dashboard and note the gamlet id and gamlet uuid.
-5. Change gc.connectToSession(sess_id-0, "-dummy-"); to gc.connectToSession(sess_id-0, "<noted gamlet uuid>"); in ``oninit`` function.
-6. Change gc.createConnectToSession(0,"-dummy-"); to gc.createConnectToSession(<noted gamlet id>,"<noted gamlet uuid>"); in ``oninit`` function.
-7. Change gc = new GamoogaClient("<ip address>"); to gc = new GamoogaClient(); in ``oninit`` function.
+5. Change ``gc.connectToSession(sess_id-0, "-dummy-");`` to ``gc.connectToSession(sess_id-0, "<noted gamlet uuid>");`` in ``oninit`` function.
+6. Change ``gc.createConnectToSession(0,"-dummy-");`` to ``gc.createConnectToSession(<noted gamlet id>,"<noted gamlet uuid>");`` in ``oninit`` function.
+7. Change ``gc = new GamoogaClient("<ip address>");`` to ``gc = new GamoogaClient();`` in ``oninit`` function.
 
 Done, make your frontend (the 'LiveDraw/html' folder) public and when you open "index.html" it connects to production gamlet in Gamooga cluster.
 
