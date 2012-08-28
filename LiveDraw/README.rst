@@ -277,7 +277,7 @@ We are mostly done at this point, however there is a small issue when two or mor
 Tiny caveat
 -----------
 
-You can see that ``ctx`` provides you with a single pointer on the canvas to extend the paths being drawn. Because of this, when mulitple users' paths are simultaneously drawn on your canvas, they are not drawn right (``lineTo`` of different users intermingle and you see unneeded lines).
+You can see that ``ctx`` provides you with a single pointer on the canvas to extend the paths being drawn. Because of this, when mulitple users' paths are simultaneously drawn on your canvas, they are not drawn properly (``lineTo`` of different users intermingle and you see unneeded lines).
 
 To fix that add the following global variables in script tag:
 
@@ -368,7 +368,7 @@ When clear button is clicked, we want the canvases of all the users to clear up.
         gc.send("coordata", "-2,-2;");
     }
 
-We clear the rectangle and add a "-2,-2;" to coordinate data to be sent to other users. It will be detected at other users and similar clear up is performed. Change ``onmessage`` callback for ``coordata`` like below:
+We clear the rectangle and add a "-2,-2;" to coordinate data to be sent to other users. It is detected at other users and similar clear up is performed. Change ``onmessage`` callback for ``coordata`` like below:
 
 .. code-block:: javascript
 
