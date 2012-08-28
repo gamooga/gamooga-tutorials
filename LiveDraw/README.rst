@@ -421,7 +421,7 @@ To deploy to production, follow the steps:
 4. Go the uploaded gamlet's dashboard and note the gamlet id and gamlet uuid.
 5. Change gc.connectToSession(sess_id-0, "-dummy-"); to gc.connectToSession(sess_id-0, "<noted gamlet uuid>"); in ``oninit`` function.
 6. Change gc.createConnectToSession(0,"-dummy-"); to gc.createConnectToSession(<noted gamlet id>,"<noted gamlet uuid>"); in ``oninit`` function.
-7. Change gc = new GamoogaClient("<ip address"); to gc = new GamoogaClient(); in ``oninit`` function.
+7. Change gc = new GamoogaClient("<ip address>"); to gc = new GamoogaClient(); in ``oninit`` function.
 
 Done, make your frontend (the 'LiveDraw/html' folder) public and when you open "index.html" it connects to production gamlet in Gamooga cluster.
 
