@@ -1,4 +1,4 @@
-LiveDraw (html5)
+LiveDraw
 =================
 
 Introduction
