@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="./gamooga.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+<script type="text/javascript">
+	var canvasMinX, canvasMinY;
+    var ctx;
+    var gc;
+    var mousedown = false;
+    var coorData = "";
+    var newpath = true;
+    var othernewpath = true;
+    var othernewpath = {};
+    var mylastpoint;
+    var hislastpoint = {};
+
+    function canvas_init() {
+        canvasMinX = $("#canvas").offset().left;
+        canvasMinY = $("#canvas").offset().top;
+        ctx = document.getElementById('canvas').getContext('2d');
+        ctx.canvas.width = 600;
+        ctx.canvas.height = 600;
+        ctx.strokeStyle = "#000000";
+        ctx.lineWidth = 1;
+        ctx.lineJoin = "round";
+        ctx.lineCap = "round";
+        ctx.beginPath();
+    }
+
+    function oninit() {
+        canvas_init();
+        gc = new GamoogaClient("127.0.0.1");
+        gc.onconnect(function() {
+	        window.location.hash = "#"+gc.getSessId(); 
+	        document.getElementById("sessid").innerHTML = window.location.hash.substring(1);
+	        document.getElementById("newsess").href = window.location.href;
+	        document.getElementById("connwait").style.display="none";
+	        document.getElementById("info").style.display="block";  
+	        start();
+	    });
+	    gc.onmessage("coordata", function(d) {
+            coors = d[1].split(";");
+            for (var i=0;i<coors.length-1;i++) {
+                var xy = coors[i].split(",");
+                var x = xy[0];
+                var y = xy[1];
+                if (x=="-1") {
+                    othernewpath[d[0]] = true;
+                } else if (x=="-2") {
+                    ctx.clearRect(0, 0, $('#canvas').width(), $('#canvas').height());
+                    ctx.closePath();
+                    ctx.beginPath();
+                } else {
+                    if (!(d[0] in othernewpath) || othernewpath[d[0]]) {
+                        ctx.moveTo(x, y);
+                        othernewpath[d[0]] = false;
+                        hislastpoint[d[0]] = [x,y];
+                    } else {
+                        ctx.moveTo(hislastpoint[d[0]][0], hislastpoint[d[0]][1]);
+                        ctx.lineTo(x, y);
+                        hislastpoint[d[0]] = [x,y];
+                    }
+                    ctx.stroke();
+                }
+            }
+        });
+        if (window.location.hash) {
+            sess_id = window.location.hash.substr(1);
+            gc.connectToSession(sess_id-0, "-dummy-");
+        } else {
+            gc.createConnectToSession(0,"-dummy-");
+        }
+    }
+
+    function start() {
+        $("#canvas").mousemove(onMouseMove);
+        $("#canvas").mousedown(onMouseDown);
+        $("#canvas").mouseup(onMouseUp);
+        setInterval(sendData, 250);
+    }
+
+    function onMouseDown(evt) {
+        mousedown = true;
+    }
+
+    function onMouseUp(evt) {
+        mousedown = false;
+        newpath = true;
+        coorData += "-1,-1;";
+    }
+
+    function onMouseMove(evt) {
+        if (!mousedown) return;
+        var x = evt.pageX - canvasMinX;
+        var y = evt.pageY - canvasMinY;
+        if (newpath) {
+            ctx.moveTo(x, y);
+            newpath = false;
+            mylastpoint = [x,y];
+        } else {
+            ctx.moveTo(mylastpoint[0], mylastpoint[1]);
+            ctx.lineTo(x, y);
+            mylastpoint = [x,y];
+        }
+        ctx.stroke();
+        coorData += x+","+y+";";
+    }
+
+    function sendData() {
+        if (coorData != "") {
+            gc.send("coordata", coorData);
+            coorData = "";
+        }
+    }
+
+    function erase() {
+        ctx.clearRect(0, 0, $('#canvas').width(), $('#canvas').height());
+        ctx.closePath();
+        ctx.beginPath();
+        gc.send("coordata", "-2,-2;");
+    }
+
+    GamoogaClient.init("./sock_bridge.swf", oninit);
+
+</script>
+</head>
+<body>
+<table>
+<tr><td>
+<button onclick="javascript:erase()">Clear</button><br>
+<canvas id="canvas" style="border:1px solid black"></canvas>
+</td><td style="padding-left:100px">
+<div id="connwait"><h1>Connecting, please wait...</h1></div>
+<div id="info" style="display:none"><h1>Joined session: <span id="sessid">-</span></h1><div style="text-align:left">To experience live drawing collaboration demo, you can<br>
+<a id="newsess" href="javascript:void(0)" target="_blank">Click here</a> to open the same session in another browser.
+</td></tr>
+</table>
+</body>
+</html>
