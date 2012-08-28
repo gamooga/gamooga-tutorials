@@ -129,7 +129,7 @@ Onconnect callback
 
 Fill the ``onconnect`` callback now:
 
-..code-block:: javascript
+.. code-block:: javascript
 
     gc.onconnect(function() {
         window.location.hash = "#"+gc.getSessId(); 
@@ -277,7 +277,7 @@ We are mostly done at this point, however there is a small issue when two or mor
 Tiny caveat
 -----------
 
-You can see that ``ctx`` provides you with a single pointer on the canvas to extend the paths being drawn. Because of this, when mulitple users' paths are simultaneously drawn on your canvas, they are not drawn right (`lineTo`s of different users intermingle and you see unneeded lines).
+You can see that ``ctx`` provides you with a single pointer on the canvas to extend the paths being drawn. Because of this, when mulitple users' paths are simultaneously drawn on your canvas, they are not drawn right (``lineTo``s of different users intermingle and you see unneeded lines).
 
 To fix that add the following global variables in script tag:
 
@@ -300,7 +300,7 @@ Change ``session.lua`` like below:
     
 Change ``onMouseMove`` like below:
 
-..code-block:: javascript
+.. code-block:: javascript
 
     function onMouseMove(evt) {
         if (!mousedown) return;
@@ -321,7 +321,7 @@ Change ``onMouseMove`` like below:
 
 Change ``onmessage`` callback for ``coordata`` like below:
 
-..code-block:: javascript
+.. code-block:: javascript
 
     function oninit() {
         ...
@@ -359,7 +359,7 @@ Clear button
 
 When clear button is clicked, we want the canvases of all the users to clear up. Fill up the ``erase`` function that is called when "Clear" button is clicked.
 
-..code-block:: javascript
+.. code-block:: javascript
 
     function erase() {
         ctx.clearRect(0, 0, $('#canvas').width(), $('#canvas').height());
@@ -370,7 +370,7 @@ When clear button is clicked, we want the canvases of all the users to clear up.
 
 We clear the rectangle and add a "-2,-2;" to coordinate data to be sent to other users. It will be detected at other users and similar clear up is performed at all other users. Change ``onmessage`` callback for ``coordata`` like below:
 
-..code-block:: javascript
+.. code-block:: javascript
 
     function oninit() {
         ...
@@ -408,7 +408,7 @@ In the above code, on receipt of "-2,-2;" we clearup the canvas.
 And with this we have the complete app ready. Test it out. Fire up browsers and go to http://localhost:10000/ in multiple tabs/windows and experience collaborative drawing. You can also load up the app in another machine by doing the following:
 
 1. Change gc = new GamoogaClient("127.0.0.1"); to gc = new GamoogaClient("<LAN ip of dev server>"); in ``oninit`` function.
-2. And going to http://<LAN ip of dev server>:10000/.
+2. And going to \http://<LAN ip of dev server>:10000/.
 
 Deployment
 ----------
