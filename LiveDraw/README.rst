@@ -27,15 +27,15 @@ Setup
 The final folder structure will look like this::
 
     gamooga-sdk
-    ├── VERSION
-    ├── api
-    ├── demos
-    ├── dev-server
-    ├── LiveDraw                (created)
-    │   ├── gamlet              (created)
-    │   ├── html                (created)
-    │   │   ├── gamooga.js      (copied from 'gamooga-sdk/api/javascript')
-    │   │   └── sock_bridge.swf (copied from 'gamooga-sdk/api/javascript')
+    |-- VERSION
+    |-- api
+    |-- demos
+    |-- dev-server
+    |-- LiveDraw                (created)
+    |   |-- gamlet              (created)
+    |   |-- html                (created)
+    |   |   |-- gamooga.js      (copied from 'gamooga-sdk/api/javascript')
+    |   |   |-- sock_bridge.swf (copied from 'gamooga-sdk/api/javascript')
 
 Initial page
 ------------
