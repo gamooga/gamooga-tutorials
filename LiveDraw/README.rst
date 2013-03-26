@@ -122,7 +122,7 @@ Also notice that if we have a session id in the url hash, we join that session i
 
 You can now open this page by going to http://localhost:10000/ (assuming the development server is already running). Gamooga client library when connected to development server populates the developer console with all the events like connected, messages sent/received, disconnected and any other errors that occur. Open up developer console and you can see a "GAMOOGA: connected" as shown below. As you go through the next sections and send/receive messages from Gamooga backend, you can also see those messages in the developer console.
 
-.. image:: //raw.github.com/gamooga/gamooga-tutorials/master/LiveDraw/img/connected.png
+.. image:: http://raw.github.com/gamooga/gamooga-tutorials/master/LiveDraw/img/connected.png
 
 Onconnect callback
 ------------------
@@ -270,7 +270,7 @@ The above code is mostly similar to ``onMouseMove`` function above. We attach a 
 
 The code is mostly complete now. Start the development server (if not already) as per step 5 in `Setup`_ section above. Open your browser and load up http://localhost:10000/. Once it connects you can open another tab/window to the same session by copy-pasting the url or clicking the "Click here" link on the right side of the page. Now try and draw in both the tabs. It works! Also open the developer console. You can see the messages being sent/received from the backend.
 
-.. image:: //raw.github.com/gamooga/gamooga-tutorials/master/LiveDraw/img/messages.png
+.. image:: https://raw.github.com/gamooga/gamooga-tutorials/master/LiveDraw/img/messages.png
 
 We are mostly done at this point, however there is a small issue when two or more users draw simultaneously (obviously from multiple computers). We fix that now.
 
